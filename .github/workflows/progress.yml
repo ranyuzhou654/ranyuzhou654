@@ -1,31 +1,31 @@
-name: Progress Bar CI
+name: Update Year Progress
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *' # 每6小时运行一次
+    # 每 12 小时更新一次（时间进度条不需要更新太频繁）
+    - cron: '0 */12 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 必须加这一行，否则无法 push 代码
+      contents: write # 这一行必须有！
 
     steps:
-    - uses: actions/checkout@v3 # 升级到 v3 或 v4
+    - uses: actions/checkout@v3
     
     - name: Use Node.js
-      uses: actions/setup-node@v3 # 升级到 v3
+      uses: actions/setup-node@v3
       with:
-        node-version: '18' # 建议升级到 18
+        node-version: '18'
         
-    - name: Update README.md
-      # 再次警告：这会覆盖整个文件，请确保 index.js 逻辑包含了你需要的所有内容
-      run: node index.js > README.md 
+    - name: Update README
+      run: node index.js
       
-    - name: Commit change & Push
+    - name: Commit and Push
       run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "bot: update README.md" && git push)
+        git config user.name 'github-actions[bot]'
+        git config user.email 'github-actions[bot]@users.noreply.github.com'
+        git add README.md
+        git diff --quiet && git diff --staged --quiet || (git commit -m "docs: update year progress" && git push)
