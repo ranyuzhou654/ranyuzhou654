@@ -1,0 +1,31 @@
+name: Progress Bar CI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *' # 每6小时运行一次
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 必须加这一行，否则无法 push 代码
+
+    steps:
+    - uses: actions/checkout@v3 # 升级到 v3 或 v4
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3 # 升级到 v3
+      with:
+        node-version: '18' # 建议升级到 18
+        
+    - name: Update README.md
+      # 再次警告：这会覆盖整个文件，请确保 index.js 逻辑包含了你需要的所有内容
+      run: node index.js > README.md 
+      
+    - name: Commit change & Push
+      run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "bot: update README.md" && git push)
