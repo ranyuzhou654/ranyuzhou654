@@ -1,8 +1,4 @@
-
-⏳ Year progress { ██████████████████████████     } 89.20 %
-
-⏰ Updated on Sat, 22 Nov 2025 13:36:13 GMT
-# Hi there 👋
+# Hi there 👋 I'm ranyuzhou654
 
 ## My GitHub Contributions
 
