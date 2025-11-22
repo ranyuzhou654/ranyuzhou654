@@ -1,6 +1,16 @@
-## Hi there 👋
+# Hi there 👋
 
-# My GitHub Contributions
+<br />
+
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ranyuzhou654&layout=compact&hide_border=true&langs_count=10" alt="Top Languages" />
+</p>
+
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api?username=ranyuzhou654&show_icons=true&hide_border=true" alt="Stats" />
+</p>
+
+## My GitHub Contributions
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ranyuzhou654/ranyuzhou654/output/github-contribution-grid-snake-dark.svg">
