@@ -1,5 +1,9 @@
 ## Hi there 👋
 
+# My GitHub Contributions
+
+![](https://raw.githubusercontent.com/ranyuzhou654/ranyuzhou654/main/assets/github-contribution-grid-snake.svg)
+
 <!--
 **ranyuzhou654/ranyuzhou654** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
