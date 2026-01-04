@@ -1,37 +1,43 @@
 const fs = require('fs');
 
-const thisYear = new Date().getFullYear();
-const startTimeOfThisYear = new Date(`${thisYear}-01-01T00:00:00+00:00`).getTime();
-const endTimeOfThisYear = new Date(`${thisYear}-12-31T23:59:59+00:00`).getTime();
-const progressOfThisYear = (Date.now() - startTimeOfThisYear) / (endTimeOfThisYear - startTimeOfThisYear);
-const progressBarOfThisYear = generateProgressBar();
-
-function generateProgressBar() {
-    const progressBarCapacity = 30;
-    const passedProgressBarIndex = parseInt(progressOfThisYear * progressBarCapacity);
-    const progressBar =
-      '█'.repeat(passedProgressBarIndex) +
-      ' '.repeat(progressBarCapacity - passedProgressBarIndex);
-    return `{ ${progressBar} }`;
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// 生成要插入的文本内容
-const textToInsert = `\
-⏳ Year progress ${progressBarOfThisYear} ${(progressOfThisYear * 100).toFixed(2)} %
+const thisYear = new Date().getFullYear();
+const startTime = new Date(`${thisYear}-01-01T00:00:00Z`).getTime();
+const endTime = new Date(`${thisYear}-12-31T23:59:59Z`).getTime();
+const progress = (Date.now() - startTime) / (endTime - startTime);
+
+function generateProgressBar() {
+  const cap = 30;
+  const passed = Math.floor(progress * cap);
+  // 用░避免 Markdown 把空格压缩导致进度条“变短/不齐”
+  const bar = '█'.repeat(passed) + '░'.repeat(cap - passed);
+  return `{ ${bar} }`;
+}
+
+const textToInsert =
+`⏳ Year progress \`${generateProgressBar()}\` ${(progress * 100).toFixed(2)} %
 
 ⏰ Updated on ${new Date().toUTCString()}`;
 
-// 核心逻辑：读取 README -> 替换占位符内容 -> 写回 README
 const readmePath = './README.md';
-let readmeContent = fs.readFileSync(readmePath, 'utf8');
+let readme = fs.readFileSync(readmePath, 'utf8');
 
-// 正则表达式：寻找 和 之间的内容
-const regex = /()[\s\S]*?()/;
+const START = '<!--YEAR_PROGRESS_START-->';
+const END = '<!--YEAR_PROGRESS_END-->';
 
-// 执行替换
-const newReadmeContent = readmeContent.replace(regex, `$1\n${textToInsert}\n$2`);
+if (!readme.includes(START) || !readme.includes(END)) {
+  throw new Error(`README.md 中找不到标记：请加入\n${START}\n...\n${END}`);
+}
 
-// 写入文件
-fs.writeFileSync(readmePath, newReadmeContent);
+const regex = new RegExp(
+  `(${escapeRegExp(START)})[\\s\\S]*?(${escapeRegExp(END)})`,
+  'm'
+);
+
+const newReadme = readme.replace(regex, `$1\n${textToInsert}\n$2`);
+fs.writeFileSync(readmePath, newReadme);
 
 console.log('README updated successfully with year progress!');
