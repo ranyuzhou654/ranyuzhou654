@@ -18,13 +18,38 @@
 
 <br />
 
-<p align="left">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ranyuzhou654&layout=compact&hide_border=true&langs_count=10" alt="Top Languages" />
-</p>
+<!-- Top Languages (transparent + auto light/dark) -->
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://github-readme-stats-sage-ten-48.vercel.app/api/top-langs/?username=ranyuzhou654&layout=compact&hide_border=true&langs_count=10&cache_seconds=21600&theme=transparent&bg_color=00000000&title_color=ffffff&text_color=ffffff"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://github-readme-stats-sage-ten-48.vercel.app/api/top-langs/?username=ranyuzhou654&layout=compact&hide_border=true&langs_count=10&cache_seconds=21600&theme=transparent&bg_color=00000000"
+  />
+  <img
+    alt="Top Languages"
+    src="https://github-readme-stats-sage-ten-48.vercel.app/api/top-langs/?username=ranyuzhou654&layout=compact&hide_border=true&langs_count=10&cache_seconds=21600&theme=transparent&bg_color=00000000"
+  />
+</picture>
 
-<p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=ranyuzhou654&show_icons=true&hide_border=true" alt="Stats" />
-</p>
+<!-- Stats (transparent + auto light/dark) -->
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://github-readme-stats-sage-ten-48.vercel.app/api?username=ranyuzhou654&show_icons=true&hide_border=true&cache_seconds=21600&theme=transparent&bg_color=00000000&title_color=ffffff&text_color=ffffff&icon_color=ffffff"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://github-readme-stats-sage-ten-48.vercel.app/api?username=ranyuzhou654&show_icons=true&hide_border=true&cache_seconds=21600&theme=transparent&bg_color=00000000"
+  />
+  <img
+    alt="Stats"
+    src="https://github-readme-stats-sage-ten-48.vercel.app/api?username=ranyuzhou654&show_icons=true&hide_border=true&cache_seconds=21600&theme=transparent&bg_color=00000000"
+  />
+</picture>
+
 
 <!--
 **ranyuzhou654/ranyuzhou654** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
